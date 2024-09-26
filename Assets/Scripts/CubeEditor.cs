@@ -8,7 +8,6 @@ using UnityEngine;
 public class CubeEditor : MonoBehaviour
 {
      TextMesh label;
-     Vector3 snapPos;
      WayPoint wayPoint;
     
     void Awake()
@@ -29,7 +28,7 @@ public class CubeEditor : MonoBehaviour
     }
     private void SnapToGrid()
     {   int gridSize = wayPoint.GetGridSize();
-        snapPos.y = 0;
+        
         transform.position = new Vector3(wayPoint.GetGridPos().x*gridSize,0f,wayPoint.GetGridPos().y*gridSize);
     }   
 }

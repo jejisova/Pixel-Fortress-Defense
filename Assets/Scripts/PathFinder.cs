@@ -7,7 +7,7 @@ public class PathFinder : MonoBehaviour
 {
     [SerializeField] Dictionary<Vector2Int,WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
     void Start()
-    {
+    {   
         LoadBlocks();
     }
 
@@ -22,19 +22,13 @@ public class PathFinder : MonoBehaviour
         var waypoints = FindObjectsOfType<WayPoint>();
         foreach(WayPoint waypoint in waypoints)
         {
-            //Проверить на дубликаты
-            
-            bool isOverlapping = grid.ContainsKey(waypoint.GetGridPos());
-
-            if (isOverlapping)
-            Debug.LogWarning("ПОВТОР БЛОКОВ!"+waypoint);
+            Vector2Int gridPos = waypoint.GetGridPos();  
+            if (grid.ContainsKey(gridPos))
+            Debug.LogWarning("ПОВТОР БЛОКОВ: "+ waypoint);
             else
-            grid.Add(waypoint.GetGridPos(),waypoint);
-
-            
-            
+            grid.Add(gridPos,waypoint);
         }
-        
+        print(grid.Count);
 
 
 

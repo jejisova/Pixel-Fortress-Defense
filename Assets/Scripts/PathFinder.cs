@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,25 +9,59 @@ public class PathFinder : MonoBehaviour
     [SerializeField] Dictionary<Vector2Int,WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
     [SerializeField] WayPoint startPoint, endPoint;
 
+    WayPoint searchPoint;
+
     Vector2Int[] directions = {
     Vector2Int.up,
     Vector2Int.right,
     Vector2Int.down,
     Vector2Int.left
     };
+
+    Queue<WayPoint> queue = new Queue<WayPoint>();
+    bool isRanning = true;
+    
     
     void Start()
     {   
         LoadBlocks();
         SetColorStartAndEnd();
-        ExploreNearPoints();
+        PathFind();
+        
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PathFind()
     {
+        queue.Enqueue(startPoint);
+
+        while(queue.Count > 0 && isRanning == true)
+        {
+          searchPoint = queue.Dequeue(); 
+          print("Точка которая проверяется:" + searchPoint);
+          searchPoint.isExplored = true;
+          CheckForEndpoint();
+          ExploreNearPoints();
+                 
+          
+        }
         
+        // Сгенерировать путь
+
+
+    }
+
+    private void CheckForEndpoint()
+    {
+        if(searchPoint == endPoint)
+        {
+            print("Алгоритм нашел ендпоинт");
+            isRanning = false;
+            endPoint.SetTopColor(Color.red);
+        }
+        else
+        print("Ендпоинт не найден");
+
     }
 
     private void LoadBlocks()
@@ -40,33 +75,30 @@ public class PathFinder : MonoBehaviour
             else
             grid.Add(gridPos,waypoint);
         }
-        print(grid.Count);
+        
 
     }
 
     void SetColorStartAndEnd()
     {
       startPoint.SetTopColor(Color.green);
-      endPoint.SetTopColor(Color.red);
+      
     }
 
     void ExploreNearPoints()
-    {   // Добавить в очередь ближайшие клетки
-        // Проверить ближайшие клетки  на то, являются ли они концем и существуют ли они
-        // Если нет
-        // Оставить хлебные крошки
-        // Добавить в очередь ближайшие клетки от тех, что мы проверили
-        // повторить цикл
+    {   
+        if(isRanning == false)
+        return;
         
         foreach(Vector2Int direction in directions)
         {
-            Vector2Int nearPointCordinates = (startPoint.GetGridPos() + direction);
-
+            Vector2Int nearPointCordinates = (searchPoint.GetGridPos() + direction);
             try{
-                grid[nearPointCordinates].SetTopColor(Color.blue);
+                WayPoint nearpoint = grid[nearPointCordinates];
+                AddPointToQueue(nearpoint);
             }
             catch{
-                Debug.LogWarning("Блок:"+nearPointCordinates+"Отсутствует:");
+                // Debug.LogWarning("Блок:"+nearPointCordinates+"Отсутствует:");
                 
             }
         }        
@@ -74,6 +106,16 @@ public class PathFinder : MonoBehaviour
 
     }
 
-
-
+    private void AddPointToQueue(WayPoint nearpoint)
+    {   
+        if(nearpoint.isExplored || queue.Contains(nearpoint))
+        {}
+        else
+        {
+        nearpoint.SetTopColor(Color.blue);
+        queue.Enqueue(nearpoint);
+        print("Добавить в очередь: " + nearpoint);
+        }
+        
+    }
 }

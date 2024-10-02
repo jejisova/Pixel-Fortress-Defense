@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,14 +21,30 @@ public class PathFinder : MonoBehaviour
 
     Queue<WayPoint> queue = new Queue<WayPoint>();
     bool isRanning = true;
-    
-    
-    void Start()
+
+    public List<WayPoint> path = new List<WayPoint>();
+
+    public List<WayPoint> GetPath()
     {   
         LoadBlocks();
         SetColorStartAndEnd();
         PathFind();
-        
+        CreatePath();
+        return path;
+    }
+
+    private void CreatePath()
+    {
+        path.Add(endPoint);
+        WayPoint prevPoint = endPoint.exploredFrom;
+        while (prevPoint != startPoint)
+        {
+            path.Add(prevPoint);
+            prevPoint = prevPoint.exploredFrom;
+            
+        }
+    path.Add(startPoint);
+     path.Reverse();
 
     }
 
@@ -38,16 +55,12 @@ public class PathFinder : MonoBehaviour
         while(queue.Count > 0 && isRanning == true)
         {
           searchPoint = queue.Dequeue(); 
-          print("Точка которая проверяется:" + searchPoint);
           searchPoint.isExplored = true;
           CheckForEndpoint();
           ExploreNearPoints();
                  
           
         }
-        
-        // Сгенерировать путь
-
 
     }
 
@@ -55,12 +68,13 @@ public class PathFinder : MonoBehaviour
     {
         if(searchPoint == endPoint)
         {
-            print("Алгоритм нашел ендпоинт");
+            
             isRanning = false;
             endPoint.SetTopColor(Color.red);
         }
         else
-        print("Ендпоинт не найден");
+        {}
+        
 
     }
 
@@ -71,7 +85,7 @@ public class PathFinder : MonoBehaviour
         {
             Vector2Int gridPos = waypoint.GetGridPos();  
             if (grid.ContainsKey(gridPos))
-            Debug.LogWarning("ПОВТОР БЛОКОВ: "+ waypoint);
+            {}
             else
             grid.Add(gridPos,waypoint);
         }
@@ -114,7 +128,8 @@ public class PathFinder : MonoBehaviour
         {
         nearpoint.SetTopColor(Color.blue);
         queue.Enqueue(nearpoint);
-        print("Добавить в очередь: " + nearpoint);
+        nearpoint.exploredFrom = searchPoint;
+        
         }
         
     }

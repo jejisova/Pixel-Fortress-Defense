@@ -7,12 +7,12 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    [SerializeField] List<WayPoint> WayPoints;
-    
+    PathFinder pathFinder;
     void Start()
     {   
-        //print("Персонаж начал движение");
-       // StartCoroutine(PrintWayPointName());
+       pathFinder = FindObjectOfType<PathFinder>();
+       var path = pathFinder.GetPath();
+       StartCoroutine(EnemyMove(path));
         
     }
 
@@ -21,12 +21,10 @@ public class EnemyMovement : MonoBehaviour
         
     }
 
-    IEnumerator PrintWayPointName()
-    {
+    IEnumerator EnemyMove(List<WayPoint> path)
+    {        
 
-        
-
-        foreach(WayPoint wayPoint in WayPoints)
+        foreach(WayPoint wayPoint in path)
         {   
             transform.position = wayPoint.transform.position;
             print("Персонаж передвинулся на точку:"+ wayPoint.gameObject.name);

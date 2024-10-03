@@ -26,8 +26,10 @@ public class EnemyMovement : MonoBehaviour
 
         foreach(WayPoint wayPoint in path)
         {   
+            transform.LookAt(wayPoint.transform);
+            print(wayPoint.transform);
             transform.position = wayPoint.transform.position;
-            print("Персонаж передвинулся на точку:"+ wayPoint.gameObject.name);
+            //print("Персонаж передвинулся на точку:"+ wayPoint.gameObject.name);
             yield return new WaitForSeconds(1f);
         }
 

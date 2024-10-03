@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
-    [SerializeField] Dictionary<Vector2Int,WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
+    Dictionary<Vector2Int,WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
     [SerializeField] WayPoint startPoint, endPoint;
 
     WayPoint searchPoint;
@@ -38,12 +38,12 @@ public class PathFinder : MonoBehaviour
         path.Add(endPoint);
         WayPoint prevPoint = endPoint.exploredFrom;
         while (prevPoint != startPoint)
-        {
+        {   
+            prevPoint.SetTopColor(Color.gray);
             path.Add(prevPoint);
-            prevPoint = prevPoint.exploredFrom;
-            
+           prevPoint = prevPoint.exploredFrom; 
         }
-    path.Add(startPoint);
+     path.Add(startPoint);
      path.Reverse();
 
     }
@@ -58,8 +58,6 @@ public class PathFinder : MonoBehaviour
           searchPoint.isExplored = true;
           CheckForEndpoint();
           ExploreNearPoints();
-                 
-          
         }
 
     }
@@ -68,7 +66,6 @@ public class PathFinder : MonoBehaviour
     {
         if(searchPoint == endPoint)
         {
-            
             isRanning = false;
             endPoint.SetTopColor(Color.red);
         }
@@ -107,17 +104,12 @@ public class PathFinder : MonoBehaviour
         foreach(Vector2Int direction in directions)
         {
             Vector2Int nearPointCordinates = (searchPoint.GetGridPos() + direction);
-            try{
+            if(grid.ContainsKey(nearPointCordinates))
+            {
                 WayPoint nearpoint = grid[nearPointCordinates];
                 AddPointToQueue(nearpoint);
             }
-            catch{
-                // Debug.LogWarning("Блок:"+nearPointCordinates+"Отсутствует:");
-                
-            }
         }        
-
-
     }
 
     private void AddPointToQueue(WayPoint nearpoint)
@@ -126,7 +118,6 @@ public class PathFinder : MonoBehaviour
         {}
         else
         {
-        nearpoint.SetTopColor(Color.blue);
         queue.Enqueue(nearpoint);
         nearpoint.exploredFrom = searchPoint;
         

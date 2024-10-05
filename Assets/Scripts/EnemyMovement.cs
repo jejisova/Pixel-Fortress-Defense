@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
             print(wayPoint.transform);
             transform.position = wayPoint.transform.position;
             //print("Персонаж передвинулся на точку:"+ wayPoint.gameObject.name);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
 
         

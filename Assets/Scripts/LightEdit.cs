@@ -5,44 +5,44 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-
 public class LightEdit : MonoBehaviour
-{   [SerializeField][Range(100,200)] int frequency;
-    [SerializeField] float waitingtime;
-    
+{
+    [SerializeField] [Range(1, 200)] int frequency = 100; 
+    [SerializeField] float waitingTime = 1f; 
+    [SerializeField] float minRange = 1f; 
+    [SerializeField] float maxRange = 10f; 
+
+    private Light _light;
+    private bool isScaling;
+
     void Start()
     {
-      
+        _light = GetComponent<Light>(); 
+        isScaling = false; 
     }
+
     void Update()
-    {   
-        
-        StartCoroutine(Scale());
-        
+    {
+        if (!isScaling)
+        {
+            StartCoroutine(ScaleLight());
+        }
     }
 
-    IEnumerator Scale()
-    {  
-       float count = 0;
-       while(count < waitingtime*frequency)
-       {
-        transform.localScale = new Vector3(0.1f,0.1f,0.1f);
-        count++;
-        yield return new WaitForSeconds(waitingtime/frequency);
+    IEnumerator ScaleLight()
+    {
+        isScaling = true; 
+        float elapsedTime = 0f;
 
-       }
-       while(count < waitingtime*frequency)
-       { 
-        transform.localScale = new Vector3(1.1f,1.1f,1.1f);
-        count++;
-        yield return new WaitForSeconds(waitingtime/frequency);
+        while (true)
+        {
+            
+            float sineValue = Mathf.Sin(elapsedTime * frequency * Mathf.PI * 2 / waitingTime);
+            
+            _light.range = Mathf.Lerp(minRange, maxRange, (sineValue + 1) / 2);
 
-       }
-
-       
-
+            elapsedTime += Time.deltaTime;
+            yield return null; 
+        }
     }
-
-
-
 }

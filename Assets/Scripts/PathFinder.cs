@@ -26,10 +26,14 @@ public class PathFinder : MonoBehaviour
 
     public List<WayPoint> GetPath()
     {   
+        if(path.Count == 0)
+        {
         LoadBlocks();
         SetColorStartAndEnd();
         PathFind();
         CreatePath();
+        }
+        
         return path;
     }
 

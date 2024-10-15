@@ -29,4 +29,11 @@ public class WayPoint : MonoBehaviour
       
 
     }
+
+    void OnMouseOver()
+    { 
+        Debug.Log("Game object"+gameObject.name);
+
+
+    }
 }

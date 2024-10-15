@@ -35,7 +35,7 @@ public class EnemyDamage : MonoBehaviour
     private void ProcessHit()
     {
         hitPoints = hitPoints - 1;
-        print("Жизни врага :" + hitPoints);
+        
     }
 
 

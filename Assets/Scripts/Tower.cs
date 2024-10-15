@@ -18,9 +18,11 @@ using UnityEngine;
       void Update()
       { 
         SetTargetEnemy();
+
+        var distanceToEnemy =  Vector3.Distance(targetEnemy.position,transform.position);
         
 
-        if (targetEnemy)
+        if (targetEnemy && distanceToEnemy  < shootRange)
         { towerTop.LookAt(new Vector3(targetEnemy.position.x, towerTop.transform.position.y, targetEnemy.position.z));
 
           Fire();

@@ -8,8 +8,9 @@ public class EnemyMovement : MonoBehaviour
 {
 
     PathFinder pathFinder;
-    void Start()
-    {   
+
+    private void Start()
+    {  
        pathFinder = FindObjectOfType<PathFinder>();
        var path = pathFinder.GetPath();
        StartCoroutine(EnemyMove(path));
@@ -26,8 +27,7 @@ public class EnemyMovement : MonoBehaviour
 
         foreach(WayPoint wayPoint in path)
         {   
-            transform.LookAt(wayPoint.transform);
-            print(wayPoint.transform);
+            transform.LookAt(new Vector3(wayPoint.transform.position.x,transform.position.y,wayPoint.transform.position.z));
             transform.position = wayPoint.transform.position;
             //print("Персонаж передвинулся на точку:"+ wayPoint.gameObject.name);
             yield return new WaitForSeconds(1f);

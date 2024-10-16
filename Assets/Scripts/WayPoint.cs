@@ -8,11 +8,12 @@ using UnityEngine;
 public class WayPoint : MonoBehaviour
 {   const int gridSize = 10;
     Vector2Int gridPos;
+    TowerCreator towerCreator;
 
     public bool isExplored = false;
     [SerializeField] public WayPoint exploredFrom;
-     
     public bool isPlaceble = true;
+    public bool isEmpty = true;
     public int GetGridSize ()
     {
         return gridSize;
@@ -35,12 +36,12 @@ public class WayPoint : MonoBehaviour
 
     void OnMouseOver()
     {   
+        WayPoint currentWaypoint = this;
         if(Input.GetMouseButtonDown(0) && isPlaceble == true )
-        {
-            Debug.Log("Clicked on game object"+gameObject.name);
+        {   towerCreator = FindObjectOfType<TowerCreator>();
+            towerCreator.CreateTower(transform.position, currentWaypoint);
         }
         
-
 
     }
 }

@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 2254436506650646004}
   - component: {fileID: 3162706246049513392}
   - component: {fileID: 7910207936211422242}
+  - component: {fileID: -5909323190101377892}
   m_Layer: 0
   m_Name: CubeWithSlime
   m_TagString: Untagged
@@ -169,6 +170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isExplored: 0
   exploredFrom: {fileID: 0}
+  isPlaceble: 1
+  isEmpty: 1
 --- !u!114 &7910207936211422242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +184,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b1c0e6a28b9cb478bc29222865c761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &-5909323190101377892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051831054245946445}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7374227283435459269
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 
+[SelectionBase]
+
 public class WayPoint : MonoBehaviour
 {   const int gridSize = 10;
     Vector2Int gridPos;
 
     public bool isExplored = false;
     [SerializeField] public WayPoint exploredFrom;
-
+     
+    public bool isPlaceble = true;
     public int GetGridSize ()
     {
         return gridSize;
@@ -31,8 +34,12 @@ public class WayPoint : MonoBehaviour
     }
 
     void OnMouseOver()
-    { 
-        Debug.Log("Game object"+gameObject.name);
+    {   
+        if(Input.GetMouseButtonDown(0) && isPlaceble == true )
+        {
+            Debug.Log("Clicked on game object"+gameObject.name);
+        }
+        
 
 
     }

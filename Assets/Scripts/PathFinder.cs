@@ -5,6 +5,8 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+
 public class PathFinder : MonoBehaviour
 {
     Dictionary<Vector2Int,WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
@@ -38,19 +40,27 @@ public class PathFinder : MonoBehaviour
     }
 
     private void CreatePath()
-    {
-        path.Add(endPoint);
+    {   
+        AddPointToPath(endPoint);
+
         WayPoint prevPoint = endPoint.exploredFrom;
         while (prevPoint != startPoint)
         {   
-            prevPoint.SetTopColor(Color.gray);
-            path.Add(prevPoint);
+           AddPointToPath(prevPoint);
            prevPoint = prevPoint.exploredFrom; 
         }
-     path.Add(startPoint);
+
+     AddPointToPath(startPoint);
      path.Reverse();
 
     }
+
+    private void AddPointToPath(WayPoint wayPoint)
+    {
+      path.Add(wayPoint);
+      wayPoint.isPlaceble = false;
+    }
+
 
     private void PathFind()
     {

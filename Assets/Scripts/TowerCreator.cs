@@ -14,7 +14,7 @@ public class TowerCreator : MonoBehaviour
             position = new Vector3(position.x,5,position.z);
             Instantiate(tower, position, Quaternion.identity);
             wayPoint.isEmpty = false;
-            print("12");
+            
         }
         
 

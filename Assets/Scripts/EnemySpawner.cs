@@ -24,11 +24,11 @@ public class EnemySpawner : MonoBehaviour
     {
 
         while(true)
-        {
-            Instantiate(enemyPrefab,transform.position,Quaternion.identity);
+        {   
             
+            var newEnemy = Instantiate(enemyPrefab,transform.position,Quaternion.identity);
+            newEnemy.transform.parent = transform;
             yield return new WaitForSeconds(spawnInterval);
-
         }
         
          //Спавинть бесконечно

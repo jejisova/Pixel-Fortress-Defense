@@ -36,12 +36,12 @@ public class LightEdit : MonoBehaviour
 
         while (true)
         {
-            
+            elapsedTime += Time.deltaTime;
             float sineValue = Mathf.Sin(elapsedTime * frequency * Mathf.PI * 2 / waitingTime);
             
             _light.range = Mathf.Lerp(minRange, maxRange, (sineValue + 1) / 2);
 
-            elapsedTime += Time.deltaTime;
+            
             yield return null; 
         }
     }

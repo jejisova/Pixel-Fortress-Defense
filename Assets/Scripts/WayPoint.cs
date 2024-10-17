@@ -13,7 +13,7 @@ public class WayPoint : MonoBehaviour
     public bool isExplored = false;
     [SerializeField] public WayPoint exploredFrom;
     public bool isPlaceble = true;
-    public bool isEmpty = true;
+    
     public int GetGridSize ()
     {
         return gridSize;

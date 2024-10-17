@@ -14,42 +14,36 @@ using UnityEngine;
       [SerializeField] Transform targetEnemy;
       [SerializeField] float shootRange;
       [SerializeField] ParticleSystem bulletParticle;
+
+      [SerializeField] float distanceToEnemy;
   
       void Update()
       { 
 
-
+      
         SetTargetEnemy();
 
         if (targetEnemy)
-        { var distanceToEnemy =  Vector3.Distance(targetEnemy.position,transform.position);
+        { distanceToEnemy =  Vector3.Distance(targetEnemy.position,transform.position);
           
           if (distanceToEnemy > shootRange)
-          {return;}
-
-          
-          
+          { Shoot(false);
+            return;}
           towerTop.LookAt(new Vector3(targetEnemy.position.x, towerTop.transform.position.y, targetEnemy.position.z));
-
-          Fire();
         }
-        else
-        {
-          Shoot(false);
-        }
-        
+       
+        Fire();
       
 
           
       }
 
       private void SetTargetEnemy()
-      {
-
+      { 
         var sceneEnemies = FindObjectsOfType<EnemyDamage>();
-  
         if (sceneEnemies.Length == 0)
-        {return;}
+        { distanceToEnemy = 100f;
+          return; }
         
         Transform closestEnemy = sceneEnemies[0].transform;
 
@@ -83,10 +77,12 @@ using UnityEngine;
 
       private void Fire()
       {
-          float distanceToEnemy = Vector3.Distance(targetEnemy.position, transform.position);
+         
           if (distanceToEnemy < shootRange)
           {
             Shoot(true);
+            
+            
           }
           else{
             Shoot(false);
@@ -94,8 +90,18 @@ using UnityEngine;
       }
 
       private void Shoot(bool isActive)
-      {
-        var emission = bulletParticle.emission;   
+      { 
+        
+        var emission = bulletParticle.emission;
         emission.enabled = isActive;
+        if(bulletParticle.isPlaying == false && isActive == true)
+        {bulletParticle.Play();}
+        else if(bulletParticle.isPlaying == true && isActive == false)
+        {bulletParticle.Play();}
+
+
+        
+        
+
       }
   }

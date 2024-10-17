@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
         {   
             transform.LookAt(new Vector3(wayPoint.transform.position.x,transform.position.y,wayPoint.transform.position.z));
             transform.position = wayPoint.transform.position;
-            //print("Персонаж передвинулся на точку:"+ wayPoint.gameObject.name);
+            
             yield return new WaitForSeconds(1f);
         }
 

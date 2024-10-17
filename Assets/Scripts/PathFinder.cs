@@ -12,6 +12,8 @@ public class PathFinder : MonoBehaviour
     Dictionary<Vector2Int,WayPoint> grid = new Dictionary<Vector2Int, WayPoint>();
     [SerializeField] WayPoint startPoint, endPoint;
 
+    [SerializeField] WayPoint slimeBlockPointPrefab;
+
     WayPoint searchPoint;
 
     Vector2Int[] directions = {
@@ -42,6 +44,7 @@ public class PathFinder : MonoBehaviour
     private void CreatePath()
     {   
         AddPointToPath(endPoint);
+        
 
         WayPoint prevPoint = endPoint.exploredFrom;
         while (prevPoint != startPoint)
@@ -56,9 +59,13 @@ public class PathFinder : MonoBehaviour
     }
 
     private void AddPointToPath(WayPoint wayPoint)
-    {
-      path.Add(wayPoint);
-      wayPoint.isPlaceble = false;
+    { 
+      var slimeBlockPoint = Instantiate(slimeBlockPointPrefab, wayPoint.transform.position, Quaternion.identity);
+      slimeBlockPoint.transform.parent = transform;
+      Destroy(wayPoint.gameObject);
+      path.Add(slimeBlockPoint);
+      slimeBlockPoint.isPlaceble = false;
+      
     }
 
 

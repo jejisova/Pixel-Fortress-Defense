@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9b2d04dddfda945b3c6ea72d6313bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
 --- !u!65 &9154912529917717310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97308da82ea7cc44dbff773f32594fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 6
+  hitPoints: 5
   hitParticles: {fileID: 1091541649020018018}
   deathParticles: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0, type: 3}
 --- !u!1001 &1001952466502378866

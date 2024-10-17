@@ -16,17 +16,23 @@ public class EnemyDamage : MonoBehaviour
        
     }
 
-    private void DeleteEnemy()
+    public void DeleteEnemy()
     {
         if(hitPoints <= 0)
         {
-          var destroyFx = Instantiate(deathParticles,transform.position, Quaternion.identity);
-          destroyFx.Play();
-          Destroy(destroyFx.gameObject,destroyFx.main.duration);
-          Destroy(gameObject);
+          EnemyDestroy();
           
 
         }
+    }
+
+    public void EnemyDestroy()
+    {
+        var destroyFx = Instantiate(deathParticles,transform.position, Quaternion.identity);
+          destroyFx.Play();
+          Destroy(destroyFx.gameObject,destroyFx.main.duration);
+          Destroy(gameObject);
+        
     }
 
     private void OnParticleCollision(GameObject other)

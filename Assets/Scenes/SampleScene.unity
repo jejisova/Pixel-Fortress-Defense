@@ -2396,8 +2396,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 911915673}
   - {fileID: 1901714578}
+  - {fileID: 911915673}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3836,7 +3836,7 @@ PrefabInstance:
     - target: {fileID: 5631381388494955037, guid: 31d7d061b6904d541af0035cd8f1e242, type: 3}
       propertyPath: textLife
       value: 
-      objectReference: {fileID: 911915674}
+      objectReference: {fileID: 1901714579}
     - target: {fileID: 9165301927444199768, guid: 31d7d061b6904d541af0035cd8f1e242, type: 3}
       propertyPath: m_Name
       value: Castle
@@ -4528,7 +4528,7 @@ GameObject:
   - component: {fileID: 911915675}
   - component: {fileID: 911915674}
   m_Layer: 5
-  m_Name: Life
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4573,7 +4573,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -9829,7 +9829,7 @@ GameObject:
   - component: {fileID: 1901714580}
   - component: {fileID: 1901714579}
   m_Layer: 5
-  m_Name: Enemies
+  m_Name: Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9874,7 +9874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

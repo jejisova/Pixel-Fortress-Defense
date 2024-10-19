@@ -31,9 +31,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
         
-         //Спавинть бесконечно
-            //Заспавнить врага
-            //Вернуть ничего с ожиданием 1 сек
+       
         
     }
 

@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
             yield return new WaitForSeconds((1f/speed));
         }
         
-        enemyDamage.EnemyDestroy();
+        enemyDamage.EnemyDestroy(false);
         castle.Damage();
 
 

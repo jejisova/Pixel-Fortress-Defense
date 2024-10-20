@@ -13,16 +13,22 @@ public class Castle : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI textLife;
 
+    [SerializeField] AudioClip CastleDamageFx;
+
+    AudioSource audioSource;
+
     
     void Start()
     {
         textLife.text = playerLife.ToString();
+        audioSource = GetComponent<AudioSource>();
 
 
     }
 
     public void Damage()
-    {
+    { 
+      audioSource.PlayOneShot(CastleDamageFx);
       playerLife = playerLife  - damageCount;
       textLife.text = playerLife.ToString();
 

@@ -17,6 +17,10 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
     int currentScore;
 
+    [SerializeField] AudioClip EnemyDamageFx;
+
+    AudioSource audioSource;
+
     void Start()
     {
         scoreText = GameObject.Find("Enemies").GetComponent<TMP_Text>();
@@ -36,16 +40,22 @@ public class EnemyDamage : MonoBehaviour
     {
         if(hitPoints <= 0)
         {
-          EnemyDestroy();
+          EnemyDestroy(true);
           
 
         }
     }
 
-    public void EnemyDestroy()
-    {   currentScore = int.Parse(scoreText.text);
+    public void EnemyDestroy(bool addToScore)
+    {   
+        if(addToScore == true)
+        {
+        currentScore = int.Parse(scoreText.text);
         currentScore++;
         scoreText.text = currentScore.ToString();
+
+        }
+        
         var destroyFx = Instantiate(deathParticles,transform.position, Quaternion.identity);
           destroyFx.Play();
           Destroy(destroyFx.gameObject,destroyFx.main.duration);
@@ -56,14 +66,16 @@ public class EnemyDamage : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         ProcessHit();
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(EnemyDamageFx);
         
 
 
     }
 
     private void ProcessHit()
-    {
+    {   
+        
         hitPoints = hitPoints - 1;
         hitParticles.Play();
         

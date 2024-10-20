@@ -10,11 +10,17 @@ public class EnemySpawner : MonoBehaviour
     
     [SerializeField] float spawnInterval;
     [SerializeField] EnemyMovement enemyPrefab;
+
+    [SerializeField] AudioClip EnemySpawnerFx;
+
+    AudioSource audioSource;
+
     void Start()
     {
         //Запустить сопрограмму 
-
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(EnemySpawn());
+        
         
 
         
@@ -25,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
         while(true)
         {   
-            
+            audioSource.PlayOneShot(EnemySpawnerFx);
             var newEnemy = Instantiate(enemyPrefab,transform.position,Quaternion.identity);
             newEnemy.transform.parent = transform;
             yield return new WaitForSeconds(spawnInterval);

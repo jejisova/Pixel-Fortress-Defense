@@ -54,7 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9b2d04dddfda945b3c6ea72d6313bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
+  changeSpeed: 3
 --- !u!65 &9154912529917717310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119,7 +120,8 @@ MonoBehaviour:
   hitParticles: {fileID: 1091541649020018018}
   deathParticles: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0, type: 3}
   scoreText: {fileID: 0}
-  EnemyDamageFx: {fileID: 8300000, guid: 9b77a5a897654a243ad3b0a58dd55a08, type: 3}
+  EnemyDamageFx: {fileID: 8300000, guid: 37426f12dd280274fba89c37fd6f86fa, type: 3}
+  EnemyDestroyFx: {fileID: 8300000, guid: 9b77a5a897654a243ad3b0a58dd55a08, type: 3}
 --- !u!82 &-5777366700184839337
 AudioSource:
   m_ObjectHideFlags: 0

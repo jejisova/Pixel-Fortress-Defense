@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class TowerCreator : MonoBehaviour
 {
     [SerializeField] Tower tower;
-    [SerializeField] int towerLimit = 4;
+    [SerializeField] public int towerLimit = 4;
     
     Tower newTower;
     
@@ -16,11 +17,23 @@ public class TowerCreator : MonoBehaviour
 
     Dictionary<Tower,WayPoint> TowersWaypoints = new Dictionary<Tower, WayPoint>();
     
-    
+    public void Update()
+    {
+        DisplayTowerLimit();
+
+    }
+
+    private void DisplayTowerLimit()
+    {
+        var textTowerLimit = GameObject.Find("TowerLimit");
+        var textMeshPro = textTowerLimit.GetComponent<TextMeshProUGUI>();
+        textMeshPro.text = Convert.ToString(towerLimit - TowerQueue.Count);
+    }
 
     public void CreateTower(Vector3 position, WayPoint wayPoint )
 
     {   position = new Vector3(position.x,5,position.z);
+        
         
         int towerCount = 0;
         towerCount = TowerQueue.Count;
@@ -36,6 +49,8 @@ public class TowerCreator : MonoBehaviour
 
             MoveTowerPosition(position, wayPoint);
         }
+
+
         
         
 

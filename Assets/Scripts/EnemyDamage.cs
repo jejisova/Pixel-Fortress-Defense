@@ -18,11 +18,12 @@ public class EnemyDamage : MonoBehaviour
     int currentScore;
 
     [SerializeField] AudioClip EnemyDamageFx;
+    [SerializeField] AudioClip EnemyDestroyFx;
 
     AudioSource audioSource;
 
     void Start()
-    {
+    {   
         scoreText = GameObject.Find("Enemies").GetComponent<TMP_Text>();
         
         
@@ -58,6 +59,9 @@ public class EnemyDamage : MonoBehaviour
         
         var destroyFx = Instantiate(deathParticles,transform.position, Quaternion.identity);
           destroyFx.Play();
+          var MainCamera = GameObject.Find("Main Camera");
+          AudioSource.PlayClipAtPoint(EnemyDestroyFx,MainCamera.transform.position);
+          
           Destroy(destroyFx.gameObject,destroyFx.main.duration);
           Destroy(gameObject);
         

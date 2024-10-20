@@ -16,6 +16,7 @@ using UnityEngine;
       [SerializeField] ParticleSystem bulletParticle;
 
       [SerializeField] float distanceToEnemy;
+      public bool isActive = true;
   
       void Update()
       { 
@@ -78,7 +79,7 @@ using UnityEngine;
       private void Fire()
       {
          
-          if (distanceToEnemy < shootRange)
+          if (distanceToEnemy < shootRange && isActive == true)
           {
             Shoot(true);
             

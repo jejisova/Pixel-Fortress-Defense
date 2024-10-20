@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
    [SerializeField] float changeSpeed;
    [SerializeField] TMP_Text scoreText;
 
+   public bool isActive = true;
+
     Vector3 targetPosition;
     private void Start()
     {  castle = FindObjectOfType<Castle>();
@@ -46,16 +48,23 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator EnemyMove(List<WayPoint> path)
     {        
+        
+        
 
         foreach(WayPoint wayPoint in path)
         {   
+            if(isActive == true)
+            {
             transform.LookAt(new Vector3(wayPoint.transform.position.x,transform.position.y,wayPoint.transform.position.z));
             targetPosition = wayPoint.transform.position;
             yield return new WaitForSeconds((1f/speed));
+            }
         }
-        
+        if(isActive == true)
+        {
         enemyDamage.EnemyDestroy(false);
         castle.Damage();
+        }
 
 
 

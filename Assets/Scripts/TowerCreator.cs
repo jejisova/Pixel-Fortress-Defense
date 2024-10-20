@@ -9,6 +9,8 @@ public class TowerCreator : MonoBehaviour
 {
     [SerializeField] Tower tower;
     [SerializeField] public int towerLimit = 4;
+
+    public bool isActive = true;
     
     Tower newTower;
     
@@ -18,13 +20,17 @@ public class TowerCreator : MonoBehaviour
     Dictionary<Tower,WayPoint> TowersWaypoints = new Dictionary<Tower, WayPoint>();
     
     public void Update()
-    {
+    {   
+        if(isActive == false)
+        return;
+        
         DisplayTowerLimit();
 
     }
 
     private void DisplayTowerLimit()
-    {
+    {   
+        
         var textTowerLimit = GameObject.Find("TowerLimit");
         var textMeshPro = textTowerLimit.GetComponent<TextMeshProUGUI>();
         textMeshPro.text = Convert.ToString(towerLimit - TowerQueue.Count);

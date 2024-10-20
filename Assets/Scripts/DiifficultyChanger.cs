@@ -19,10 +19,15 @@ public class difficultyChanger : MonoBehaviour
 
     [SerializeField] int startTowerLimit = 3;
 
+    public bool isActive = true;
+
     
 
     void Update()
     {   
+        if(isActive == false)
+        return;
+        
         scoreText = GameObject.Find("Enemies").GetComponent<TMP_Text>();
         score = int.Parse(scoreText.text);   
         changeDifficulty();
@@ -56,11 +61,14 @@ public class difficultyChanger : MonoBehaviour
     private float CalculateSpawnTime()
     {   
         var newSpawnInterval = StartSpawnInterval - (score/EnemiesToChangeSpeed)*changeSpawnInterval;
-        if(newSpawnInterval > minimumSpawnInterval)
+        if(newSpawnInterval > minimumSpawnInterval || score < 100)
         {
           return newSpawnInterval;
         }
+        else{
         return minimumSpawnInterval;
+        }
+        
         
     }
 

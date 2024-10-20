@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
 
     AudioSource audioSource;
 
+    public bool isActive = true;
+
     void Start()
     {
         //Запустить сопрограмму 
@@ -29,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator EnemySpawn()
     {
 
-        while(true)
+        while(isActive == true)
         {   
             audioSource.PlayOneShot(EnemySpawnerFx);
             var newEnemy = Instantiate(enemyPrefab, new Vector3(transform.position.x,0,transform.position.y),Quaternion.identity);

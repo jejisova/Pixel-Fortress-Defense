@@ -12,15 +12,21 @@ public class difficultyChanger : MonoBehaviour
     int score = 0;
     [SerializeField] int EnemiesToChangeSpeed = 5;
     [SerializeField] float changeSpeed = 0.1f;
+    [SerializeField] float maximumSpeed;
     [SerializeField] float changeSpawnInterval = 0.1f;
 
     [SerializeField] float minimumSpawnInterval;
     [SerializeField] float changeSpawnIntervalafter100 = 0.05f;
+    [SerializeField] float changeSpawnIntervalafter200 = 0.01f;
     [SerializeField] int EnemiesToNewTower = 10;
 
     [SerializeField] int startTowerLimit = 3;
 
     public bool isActive = true;
+
+    [SerializeField]int EnemiesToNewTowerafter100;
+
+    [SerializeField]int EnemiesToNewTowerafter200;
 
     
 
@@ -53,10 +59,20 @@ public class difficultyChanger : MonoBehaviour
     }
 
     private float CalculateSpeed()
-    {
-        float speed = StartSpeed + score / EnemiesToChangeSpeed * changeSpeed;
+    {   
 
-        return speed;
+        float speed = StartSpeed + score / EnemiesToChangeSpeed * changeSpeed;
+        
+        if (speed > maximumSpeed)
+        { 
+            return maximumSpeed;
+
+        }
+        else
+        {
+            return speed;
+        }
+        
     }
 
     private float CalculateSpawnTime()
@@ -66,10 +82,14 @@ public class difficultyChanger : MonoBehaviour
         {
           return newSpawnInterval;
         }
-        else if(score > 100)
+        else if(score > 100 && score < 200)
         {
             return minimumSpawnInterval - changeSpawnIntervalafter100 * (score/EnemiesToChangeSpeed - 10);
         
+        }
+        else if(score > 200)
+        {
+             return minimumSpawnInterval - (changeSpawnIntervalafter100 * (score/EnemiesToChangeSpeed - 25)) - (changeSpawnIntervalafter200 * (score/EnemiesToChangeSpeed - 50)) ;
         }
         else
         {
@@ -87,8 +107,24 @@ public class difficultyChanger : MonoBehaviour
     }
 
     private int CalculateTowerLimit()
-    {
-        var newTowerLimit = startTowerLimit + score / EnemiesToNewTower;
+    {   int newTowerLimit;
+
+        if (score < 100)
+        { 
+          newTowerLimit = startTowerLimit + score / EnemiesToNewTower;
+        }
+        else if (score >= 100 && score < 200 )
+        {
+           newTowerLimit = startTowerLimit + score / EnemiesToNewTowerafter100;
+        }
+        else if(score >= 200)
+        {
+           newTowerLimit = startTowerLimit + score / EnemiesToNewTowerafter200;
+
+        }
+        else
+        { newTowerLimit = startTowerLimit;}
+        
         return newTowerLimit;
 
 

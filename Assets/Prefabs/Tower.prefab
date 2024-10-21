@@ -145,6 +145,8 @@ MonoBehaviour:
   targetEnemy: {fileID: 0}
   shootRange: 30
   bulletParticle: {fileID: 3868248684158498651}
+  distanceToEnemy: 0
+  isActive: 1
 --- !u!1001 &126286916291025738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,6 +276,10 @@ PrefabInstance:
     - target: {fileID: 8609094935715496649, guid: d67a1bb452f76de4fba61914b886fffd, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8609094935715496649, guid: d67a1bb452f76de4fba61914b886fffd, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8609094935715496649, guid: d67a1bb452f76de4fba61914b886fffd, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

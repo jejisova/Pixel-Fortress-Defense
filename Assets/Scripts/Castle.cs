@@ -20,6 +20,7 @@ public class Castle : MonoBehaviour
     GameObject afterGameUI;
 
     AudioSource audioSource;
+    PathFinder pathFinder;
 
     void Update()
     {
@@ -37,7 +38,10 @@ public class Castle : MonoBehaviour
     }
 
     void Start()
-    {   afterGameUI = GameObject.Find("AfterGameUI");
+    {   
+      pathFinder = FindObjectOfType<PathFinder>();
+      var path = pathFinder.GetPath();
+      afterGameUI = GameObject.Find("AfterGameUI");
         afterGameUI.SetActive(false);
         textLife.text = playerLife.ToString();
         audioSource = GetComponent<AudioSource>();
@@ -101,7 +105,7 @@ public class Castle : MonoBehaviour
       }
 
       var EnemySpawner = FindObjectOfType<EnemySpawner>();
-      EnemySpawner.isActive = false;
+      EnemySpawner.isGameActive = false;
 
 
 

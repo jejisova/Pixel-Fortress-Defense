@@ -15,6 +15,7 @@ public class difficultyChanger : MonoBehaviour
     [SerializeField] float changeSpawnInterval = 0.1f;
 
     [SerializeField] float minimumSpawnInterval;
+    [SerializeField] float changeSpawnIntervalafter100 = 0.05f;
     [SerializeField] int EnemiesToNewTower = 10;
 
     [SerializeField] int startTowerLimit = 3;
@@ -61,12 +62,18 @@ public class difficultyChanger : MonoBehaviour
     private float CalculateSpawnTime()
     {   
         var newSpawnInterval = StartSpawnInterval - (score/EnemiesToChangeSpeed)*changeSpawnInterval;
-        if(newSpawnInterval > minimumSpawnInterval || score < 100)
+        if(newSpawnInterval > minimumSpawnInterval)
         {
           return newSpawnInterval;
         }
-        else{
-        return minimumSpawnInterval;
+        else if(score > 100)
+        {
+            return minimumSpawnInterval - changeSpawnIntervalafter100 * (score/EnemiesToChangeSpeed - 10);
+        
+        }
+        else
+        {
+            return minimumSpawnInterval;
         }
         
         

@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
 {
 
     PathFinder pathFinder;
+    
     EnemyDamage enemyDamage;
     [SerializeField] float speed = 1;
 

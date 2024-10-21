@@ -15,23 +15,39 @@ public class EnemySpawner : MonoBehaviour
 
     AudioSource audioSource;
 
-    public bool isActive = true;
+    public bool isGameActive = false;
+    int i = 1;
 
     void Start()
-    {
+    {   
         //Запустить сопрограмму 
         audioSource = GetComponent<AudioSource>();
-        StartCoroutine(EnemySpawn());
+        print(isGameActive);
+    }
+
+     void Update()
+    {
+         
         
+    }
+
+    public void StartGame()
+    { 
+     
+     isGameActive = true;
+     if(isGameActive == true && i == 1)
+      { 
+        StartCoroutine(EnemySpawn());  
+        i++;
+      }
         
 
-        
     }
 
     IEnumerator EnemySpawn()
     {
 
-        while(isActive == true)
+        while(isGameActive == true)
         {   
             audioSource.PlayOneShot(EnemySpawnerFx);
             var newEnemy = Instantiate(enemyPrefab, new Vector3(transform.position.x,0,transform.position.y),Quaternion.identity);
@@ -44,10 +60,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     
 

@@ -10027,9 +10027,10 @@ MonoBehaviour:
   StartSpeed: 0.8
   StartSpawnInterval: 3
   EnemiesToChangeSpeed: 5
-  changeSpeed: 0.2
+  changeSpeed: 0.22
   changeSpawnInterval: 0.3
   minimumSpawnInterval: 1.5
+  changeSpawnIntervalafter100: 0.01
   EnemiesToNewTower: 20
   startTowerLimit: 3
   isActive: 1

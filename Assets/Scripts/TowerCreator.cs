@@ -23,7 +23,7 @@ public class TowerCreator : MonoBehaviour
     {   
         if(isActive == false)
         return;
-        
+
         DisplayTowerLimit();
 
     }
@@ -38,9 +38,9 @@ public class TowerCreator : MonoBehaviour
 
     public void CreateTower(Vector3 position, WayPoint wayPoint )
 
-    {   position = new Vector3(position.x,5,position.z);
-        
-        
+    {    
+         position = new Vector3(position.x,5,position.z);
+              
         int towerCount = 0;
         towerCount = TowerQueue.Count;
 
@@ -56,7 +56,7 @@ public class TowerCreator : MonoBehaviour
             MoveTowerPosition(position, wayPoint);
         }
 
-
+        FindObjectOfType<EnemySpawner>().StartGame();
         
         
 

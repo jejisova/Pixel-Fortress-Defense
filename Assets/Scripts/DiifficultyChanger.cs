@@ -28,6 +28,8 @@ public class difficultyChanger : MonoBehaviour
 
     [SerializeField]int EnemiesToNewTowerafter200;
 
+    [SerializeField]int EnemiesToNewTowerafter300;
+
     
 
     void Update()
@@ -87,9 +89,9 @@ public class difficultyChanger : MonoBehaviour
             return minimumSpawnInterval - changeSpawnIntervalafter100 * (score/EnemiesToChangeSpeed - 10);
         
         }
-        else if(score > 200)
+        else if(score > 200  )
         {
-             return minimumSpawnInterval - (changeSpawnIntervalafter100 * (score/EnemiesToChangeSpeed - 25)) - (changeSpawnIntervalafter200 * (score/EnemiesToChangeSpeed - 50)) ;
+             return minimumSpawnInterval -  (changeSpawnIntervalafter100 * (score/EnemiesToChangeSpeed - 25)) - (changeSpawnIntervalafter200 * (score/EnemiesToChangeSpeed - 50)) ;
         }
         else
         {
@@ -117,9 +119,14 @@ public class difficultyChanger : MonoBehaviour
         {
            newTowerLimit = startTowerLimit + score / EnemiesToNewTowerafter100;
         }
-        else if(score >= 200)
+        else if(score >= 200 && score < 300 )
         {
            newTowerLimit = startTowerLimit + score / EnemiesToNewTowerafter200;
+
+        }
+        else if(score >= 300)
+        {
+           newTowerLimit = startTowerLimit + score / EnemiesToNewTowerafter300;
 
         }
         else

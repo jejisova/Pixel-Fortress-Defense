@@ -2697,7 +2697,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 3840, y: 2160}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4417,8 +4417,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8935209, y: 0.93738896}
   m_AnchorMax: {x: 0.938, y: 0.9605371}
-  m_AnchoredPosition: {x: 63.419434, y: -1.1898193}
-  m_SizeDelta: {x: 28.992004, y: -2.0046234}
+  m_AnchoredPosition: {x: 24.462036, y: -1.1898193}
+  m_SizeDelta: {x: -48.924, y: -2.005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709354002
 MonoBehaviour:
@@ -4503,7 +4503,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -51.395996, y: 0, z: 82.20331, w: 0}
+  m_margin: {x: -51.395996, y: 0, z: -0.9842415, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4774,7 +4774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7794792, y: 0.026611112}
   m_AnchorMax: {x: 0.9833022, y: 0.05377778}
-  m_AnchoredPosition: {x: 194.41455, y: -4.5080566}
+  m_AnchoredPosition: {x: 194.42188, y: -4.5078125}
   m_SizeDelta: {x: -580.8533, y: -9.005436}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782628377
@@ -10372,7 +10372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4bc6a0742e52d842a8adb09f0301593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartSpeed: 0.8
+  StartSpeed: 1
   StartSpawnInterval: 3
   EnemiesToChangeSpeed: 4
   changeSpeed: 0.2
@@ -10380,12 +10380,13 @@ MonoBehaviour:
   changeSpawnInterval: 0.25
   minimumSpawnInterval: 1
   changeSpawnIntervalafter100: 0.015
-  changeSpawnIntervalafter200: 0.001
-  EnemiesToNewTower: 19
+  changeSpawnIntervalafter200: 0.003
+  EnemiesToNewTower: 20
   startTowerLimit: 3
   isActive: 1
-  EnemiesToNewTowerafter100: 22
-  EnemiesToNewTowerafter200: 24
+  EnemiesToNewTowerafter100: 20
+  EnemiesToNewTowerafter200: 20
+  EnemiesToNewTowerafter300: 20
 --- !u!1001 &1710337293
 PrefabInstance:
   m_ObjectHideFlags: 0

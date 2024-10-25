@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Unity-TD.sln"
+    "dotnet.defaultSolution": "Pixel-Fortress-Defense.sln"
 }
